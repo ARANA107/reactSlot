@@ -1,0 +1,16 @@
+.mainDisplay{
+    width:100%;
+    min-height: 80vh;
+    background: darkolivegreen;
+    color: whitesmoke;
+}
+
+/* .imageDisplay{
+    height:200px;
+    width:200px;
+    margin:10px;
+} */
+
+.albumImage{
+    width:100%;
+}

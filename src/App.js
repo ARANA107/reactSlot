@@ -1,26 +1,35 @@
-import React from 'react';
+import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Sidebar from './SideBar';
+import MainDisplay from './MainDisplay'
+import Player from './Player'
+import {AlbumsList} from './shared/AlbumsList';
+import Login from './login';
+import Register from './register';
 
-function App() {
+class App extends Component {
+constructor(props){
+  super(props);
+  this.state={
+    AlbumsList:AlbumsList
+  }
+}
+
+render(){
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+    {/* <div className="rowC">
+      <Sidebar/>
+      <MainDisplay album={this.state.AlbumsList}/>
+    </div>
+    <Player /> */}
+    <Login/>
+    <Register/>
     </div>
   );
+}
+  
 }
 
 export default App;
