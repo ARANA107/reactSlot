@@ -19,13 +19,13 @@ constructor(props){
 render(){
   return (
     <div>
-    {/* <div className="rowC">
+    <div className="rowC">
       <Sidebar/>
       <MainDisplay album={this.state.AlbumsList}/>
     </div>
-    <Player /> */}
-    <Login/>
-    <Register/>
+    <Player />
+    {/* <Login/>
+    <Register/> */}
     </div>
   );
 }
