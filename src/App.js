@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
 import './App.css';
-import Sidebar from './SideBar';
-import MainDisplay from './MainDisplay'
-import Player from './Player'
+import Sidebar from './sideBar/SideBar';
+import MainDisplay from './MainDisplay/MainDisplay'
+import Player from './Player/Player'
 import {AlbumsList} from './shared/AlbumsList';
-import Login from './login';
-import Register from './register';
+import Login from './loginReg/login';
+import Register from './loginReg/register';
 
 class App extends Component {
 constructor(props){

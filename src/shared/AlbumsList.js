@@ -1,49 +1,49 @@
 export const AlbumsList = [
         {
             id:1,
-            albumName: "random",
+            albumName: "some album",
             albumPhoto: require('../images/clearday.jpg'),
             albumSinger: "Rey"
         },
         {
             id:2,
-            albumName: "random",
+            albumName: "hello album",
             albumPhoto: require('../images/funkyelement.jpg'),
             albumSinger: "Rey"
         }, 
         {
             id:3,
-            albumName: "random",
+            albumName: "another album",
             albumPhoto: require('../images/goinghigher.jpg'),
             albumSinger: "Rey"
         },
         {
             id:4,
-            albumName: "random",
+            albumName: "okay album",
             albumPhoto: require('../images/popdance.jpg'),
             albumSinger: "Rey"
         },
         {
             id:5,
-            albumName: "random",
+            albumName: "dom",
             albumPhoto: require('../images/sweet.jpg'),
             albumSinger: "Rey"
         },
         {
             id:6,
-            albumName: "random",
+            albumName: "exmaple",
             albumPhoto: require('../images/ukulele.jpg'),
             albumSinger: "Rey"
         },
         {
             id:7,
-            albumName: "random",
+            albumName: "i think you got it",
             albumPhoto: require('../images/energy.jpg'),
             albumSinger: "Rey"
         },
         {
             id:8,
-            albumName: "random",
+            albumName: "ok thats it",
             albumPhoto: require('../images/clearday.jpg'),
             albumSinger: "Rey"
         },
@@ -59,17 +59,5 @@ export const AlbumsList = [
             albumPhoto: require('../images/goinghigher.jpg'),
             albumSinger: "Rey"
         },
-        {
-            id:11,
-            albumName: "random",
-            albumPhoto: require('../images/popdance.jpg'),
-            albumSinger: "Rey"
-        },
-        {
-            id:12,
-            albumName: "random",
-            albumPhoto: require('../images/sweet.jpg'),
-            albumSinger: "Rey"
-        }
     ];
 

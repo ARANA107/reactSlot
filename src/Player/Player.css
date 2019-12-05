@@ -2,7 +2,8 @@
     background: #282828;
     position: fixed;
     color:white;
-    height:20vh;
+    height:90px;
+    padding:16px;
     width:100%;
     bottom:0;
 }

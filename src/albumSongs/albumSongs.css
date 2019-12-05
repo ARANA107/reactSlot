@@ -1,0 +1,40 @@
+.albumPane{
+    margin: 20px 0 10px 5px;
+}
+
+.albumImage{
+    width: 30%;
+    float: left;
+    max-width: 240px;
+    margin:10px;
+}
+
+.albumImage img{
+    width:240px;
+}
+
+.albumDetails{
+    margin: 10px 10px 10px 35px;
+    padding-left:10px;
+}
+
+.albumDetails .row{
+    margin:15px 0px 0px 15px ;
+}
+
+.albumDetails .row:nth-child(2), .albumDetails .row:nth-child(3) {
+    color: #939393;
+    font-weight: 200;
+}
+
+.tracklistRow{
+    padding:6px 5% 10px 26px
+}
+
+.tracklist li{
+    border-bottom: 0.5px white solid;
+}
+
+.tracklist li:nth-last-child(1){
+    border-bottom: none;
+}

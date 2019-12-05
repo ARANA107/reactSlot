@@ -4,7 +4,6 @@ import './Player.css';
 function Player(){
     return(
         <div className="player">
-            <div className="btn btn-primary">this is player</div>
             
             </div>
     );
