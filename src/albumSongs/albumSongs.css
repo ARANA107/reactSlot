@@ -27,14 +27,88 @@
     font-weight: 200;
 }
 
-.tracklistRow{
-    padding:6px 5% 10px 26px
+
+.tracklist {
+    padding: 0;
 }
 
-.tracklist li{
-    border-bottom: 0.5px white solid;
+.tracklistRow {
+    height: 70px;
+    padding: 15px 10px;
+    list-style: none;
+    border-bottom: white 0.5px solid;
 }
 
-.tracklist li:nth-last-child(1){
+.tracklistRow:nth-last-child(1){
     border-bottom: none;
 }
+
+.tracklistRow span {
+    color: #939393;
+    font-weight: 200;
+}
+
+.tracklistRow:hover {
+    background-color: #282828;
+}
+
+.tracklistRow .trackCount {
+    width: 8%;
+    margin-left: 20px;
+    float: left;
+}
+
+.tracklistRow .trackCount img {
+    width: 20px;
+    visibility: hidden;
+    position: absolute;
+    cursor: pointer;
+}
+
+.tracklistRow:hover .trackCount img {
+    visibility: visible;
+}
+
+.tracklistRow .trackCount span {
+    visibility: visible;
+}
+
+.tracklistRow:hover .trackCount span {
+    visibility: hidden;
+}
+
+.tracklistRow .trackInfo {
+    width: 50%;
+    float: left;
+}
+
+.tracklistRow .trackInfo span {
+    display: block;
+}
+
+.tracklistRow .trackOptions {
+    width: 5%;
+    float: left;
+    text-align: right;
+}
+
+.tracklistRow .trackOptions img {
+    width: 15px;
+    visibility: hidden;
+}
+
+.tracklistRow:hover .trackOptions img {
+    visibility: visible;
+}
+
+.tracklistRow .trackDuration {
+    width: 12%;
+    height: 20px;
+    float: right;
+}
+
+.tracklistRow .trackInfo .trackName {
+    color: #fff;
+    margin-bottom: 7px;
+}
+

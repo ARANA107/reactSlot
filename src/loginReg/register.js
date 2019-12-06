@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Button,Col, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Button,Col, Form, FormGroup, Label, Input } from 'reactstrap';
 import './regLog.css';
 
 class Register extends Component{
