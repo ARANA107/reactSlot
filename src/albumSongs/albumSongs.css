@@ -1,5 +1,5 @@
 .albumPane{
-    margin: 20px 0 10px 5px;
+    margin: 20px 0 30px 232px;
 }
 
 .albumImage{
@@ -30,6 +30,12 @@
 
 .tracklist {
     padding: 0;
+    overflow: auto;
+    margin-bottom: 92px;
+}
+
+.tracklistContainer{
+    margin-left:223px;
 }
 
 .tracklistRow {

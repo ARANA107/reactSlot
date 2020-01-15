@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import { Row, Col } from 'reactstrap';
 import {AlbumsList} from '../shared/AlbumsList';
 import './albumSongs.css';
+import Player from '../Player/Player'
+
 
 class AlbumSongs extends Component{
     constructor(props){
@@ -10,26 +12,36 @@ class AlbumSongs extends Component{
             AlbumsList:AlbumsList,
             albumName: "some album",
             albumPhoto: require('../images/clearday.jpg'),
-            albumSinger: "Rey"
-       
+            albumSinger: "Rey",
+            songList: []
         }
         
     }
-
+    
     componentDidMount () {
-      const number=  Number(this.props.match.params.id);
-     const alb = this.state.AlbumsList.filter( album => album.id===number)
-    console.log("this is alb "+alb[0].id);
-    this.setState({albumName:alb[0].albumName});
-    this.setState({albumPhoto:alb[0].albumPhoto});
-    this.setState({albumSinger:alb[0].albumSinger});
+        const number=  Number(this.props.location[this.props.location.length-1]);
+        const alb = this.state.AlbumsList.filter( album => album.id===number);
+        this.setState({albumName:alb[0].albumName});
+        this.setState({albumPhoto:alb[0].albumPhoto});
+        this.setState({albumSinger:alb[0].albumSinger});
+      
+
+        this.setState({ songList: alb[0].songs }, () => {
+            console.log(this.state.songList, 'ok');
+          });       
       }
 
+      imageClick(songList,item){
+          console.log("play the song with song id: "+item+" "+songList);
+          this.props.playFromAlbum(songList,item.songPath);
+      }
     render(){
+  
+       
         return(
         <div>
             <div className="text-center"><h1>Your Album</h1></div>
-         
+        
   <Row className="albumPane">
     <Col className="albumImage">
         <img  src={this.state.albumPhoto} alt=""></img>
@@ -40,78 +52,38 @@ class AlbumSongs extends Component{
         <Row>No. of songs</Row>
     </Col>
   </Row>
-
-   <div className="tracklistContainer">
+  <div className="tracklistContainer">
             <ul className="tracklist">
-                
-               <li className='tracklistRow'>
-                            <div className='trackCount'>
-                            <img className='play' alt="something" src={require('../icons/play-white.png')}/>
-                                <span className='trackNumber'>1</span>
-                            </div>
-        
-        
-                            <div className='trackInfo'>
-                                <span className='trackName'>Song Name</span>
-                                <span className='artistName'>Artist Name</span>
-                            </div>
-        
-                            <div className='trackOptions'>
-                            <img className='play' alt="something" src={require('../icons/more.png')}/>
-                            </div>
-        
-                            <div className='trackDuration'>
-                                <span className='duration'>3:32</span>
-                            </div>
-        
-        
-                </li>
-                <li className='tracklistRow'>
-                    <div className='trackCount'>
-                        <img className='play' alt="something" src={require('../icons/play-white.png')}/>
-                        <span className='trackNumber'>2</span>
-                    </div>
+                        {this.state.songList.map((item,id)=>{
+                            return(
+                                <li key={id} className='tracklistRow'>
+            <div className='trackCount'>
+            <img onClick={() => this.imageClick(this.state.songList,item)}className='play' alt="something" src={require('../icons/play-white.png')}/>
+        <span className='trackNumber'>{item.songId}</span>
+            </div>
 
 
-                    <div className='trackInfo'>
-                        <span className='trackName'>Song Name</span>
-                        <span className='artistName'>Artist Name</span>
-                    </div>
+            <div className='trackInfo'>
+        <span className='trackName'>{item.songName}</span>
+        <span className='artistName'>{item.albumSinger}</span>
+            </div>
 
-                    <div className='trackOptions'>
-                    <img className='play' alt="something" src={require('../icons/more.png')}/>
-                    </div>
+            <div className='trackOptions'>
+            <img className='play' alt="something" src={require('../icons/more.png')}/>
+            </div>
 
-                    <div className='trackDuration'>
-                        <span className='duration'>3:32</span>
-                    </div>
+            <div className='trackDuration'>
+                <span className='duration'>3:32</span>
+            </div>
 
-                </li>
-                <li className='tracklistRow'>
-                    <div className='trackCount'>
-                        <img className='play' alt="something" src={require('../icons/play-white.png')}/>
-                        <span className='trackNumber'>3</span>
-                    </div>
-
-
-                    <div className='trackInfo'>
-                        <span className='trackName'>Song Name</span>
-                        <span className='artistName'>Artist Name</span>
-                    </div>
-
-                    <div className='trackOptions'>
-                    <img className='play' alt="something" src={require('../icons/more.png')}/>
-                    </div>
-
-                    <div className='trackDuration'>
-                        <span className='duration'>3:32</span>
-                    </div>
-
-                </li>
+        </li>)
+        })}  
             </ul>
         </div>
+   
 
             {this.props.albumInfo}
+            
             </div>
         )
     }
