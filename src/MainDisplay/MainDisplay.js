@@ -18,7 +18,7 @@ class MainDisplay extends Component{
   }
 
   sendInfo(album){
-    console.log(album);
+    //console.log(album);
     this.setState({albumName:album.albumName, albumPhoto:album.albumPhoto, albumSinger: album.albumSinger});
   }
 

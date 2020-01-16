@@ -18,7 +18,7 @@ class  Player extends Component{
     }
 
     componentDidMount(){
-
+        //console.log(this.props.songList)
     }
     
     playSong=()=>{
@@ -85,13 +85,9 @@ handlOnMouseDownVol = (event) => {
     }
 
     render(){
-    const stl ={
-        display: 'none'
-        
-    }
 
 
-    let remTime = this.props.songInfo.remTime;
+    //let remTime = this.props.songInfo.remTime;
     let currTime = this.props.songInfo.currTime;
     let progress = this.props.songInfo.currTime / this.props.songInfo.remTime * 100;
     let finalP = progress + '%';
@@ -103,17 +99,17 @@ handlOnMouseDownVol = (event) => {
 <div id="nowPlayingLeft">
                     <div className="content">
                         <span className="albumLink">
-                            <img src={require('../images/circle.png')} className="albumArtwork" alt=""/>
+                            <img src={this.props.albumPhoto} className="albumArtwork" alt=""/>
                         </span>
 
                         <div className="trackInfo">
 
                             <span className="trackName">
-                                <span>Happy Birthday</span>
+    <span>{this.props.albumName}</span>
                             </span>
 
                             <span className="artistName">
-                                <span>Ash Rana</span>
+    <span>{this.props.albumSinger}</span>
                             </span>
 
                         </div>

@@ -3,7 +3,7 @@ import './App.css';
 import Sidebar from './sideBar/SideBar';
 import MainDisplay from './MainDisplay/MainDisplay'
 import Player from './Player/Player'
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 import Login from './loginReg/login';
  import Register from './loginReg/register';
 import AlbumSongs from './albumSongs/albumSongs';
@@ -28,12 +28,15 @@ constructor(props){
     shuffleSong:false,
     repeat:false,
     count:0,
+    albumName:null,
+    albumPhoto:null,
+    albumSinger:null,
     song:require('./shared/songs/bensound-anewbeginning.mp3'),
 };
 }
 componentDidMount() {
   this.audio= new Audio(this.state.song);
-  console.log("this is app "+this.audio.volume);
+  //console.log("this is app "+this.audio.volume);
   this.setState({volume:this.audio.volume})
 
   this.audio.onloadedmetadata =()=> {
@@ -53,7 +56,8 @@ componentDidMount() {
     this.audio.addEventListener("ended", ()=>{
         this.nextSong();
     })
-    console.log(this.state.shuffleSong)
+    //console.log(this.state.shuffleSong)
+    //console.log(this.state.songList+ "THIS IS SONG LIST");
 }
 updateTime(time){
   this.setState({remTime:time})
@@ -88,27 +92,33 @@ repeatSong=()=>{
 
 }
 
+setAlbumDetails=(albumName,albumPhoto,albumSinger)=>{
+this.setState({albumName, albumPhoto, albumSinger});
+
+}
+
 componentDidUpdate() {
-//console.log("this is from componentDidUpdate(): "+this.state.shuffleSong)
-//console.log(this.state.shuffleSongList);
+////console.log("this is from componentDidUpdate(): "+this.state.shuffleSong)
+////console.log(this.state.shuffleSongList);
+
 }
 
 shuffleSong=()=>{
   this.setState({shuffleSong: !this.state.shuffleSong});
 
    let shuffledList = [...this.state.songList];
-   let num1 = this.state.songList.map(item=>item.songId);
-  console.log(shuffledList+"-------------------------------");
-   console.log("these are ids of shuffleSong songList from state"+num1);
+   //let num1 = this.state.songList.map(item=>item.songId);
+  //console.log(shuffledList+"-------------------------------");
+   //console.log("these are ids of shuffleSong songList from state"+num1);
    shuffledList = this.shuffleArray(shuffledList);
-   let num2 = shuffledList.map(item=>item.songId);
-   console.log("this is random shuffledList: "+ num2)
+   //let num2 = shuffledList.map(item=>item.songId);
+   //console.log("this is random shuffledList: "+ num2)
    this.setState({shuffleSongList: shuffledList});
 
 }
 
  shuffleArray(array) {
-   console.log("we are in shuffleAray with array: "+array)
+   //console.log("we are in shuffleAray with array: "+array)
   let i = array.length - 1;
   for (; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -129,11 +139,11 @@ nextSong=()=>{
   }
  
   if(this.state.shuffleSong){
-      shuffledIds = this.state.shuffleSongList.map((obj,index,array)=>{
+      shuffledIds = this.state.shuffleSongList.map((obj)=>{
       return obj.songId
     })
 
-    console.log("these are the IDS---------"+shuffledIds);
+    //console.log("these are the IDS---------"+shuffledIds);
 
     this.setState({count: this.state.count+1})
 
@@ -147,7 +157,7 @@ nextSong=()=>{
       nextSongId = shuffledIds[this.state.count];
 
     }
-    console.log("THIS IS nextSongId line 141: "+nextSongId+" and count is: "+this.state.count);
+    //console.log("THIS IS nextSongId line 141: "+nextSongId+" and count is: "+this.state.count);
 
     
     if(nextSongId>this.state.songList.length){
@@ -158,8 +168,8 @@ nextSong=()=>{
       this.setState({currentSongId:nextSongId})
     }
     
-    console.log("THIS IS nextSongId:---------"+nextSongId);
-    this.state.songList.map(item =>{
+    //console.log("THIS IS nextSongId:---------"+nextSongId);
+    this.state.songList.forEach(item =>{
       if(item.songId === nextSongId){
         this.setState({song: require("" + item.songPath)});
        this.audio.src= require(""+item.songPath);
@@ -170,10 +180,16 @@ nextSong=()=>{
        }
      
       }
+     
     })
   } 
   else{
-    nextSongId = this.state.currentSongId+1;
+    if(this.state.repeat){
+      nextSongId=this.state.currentSongId
+    }else{
+      nextSongId = this.state.currentSongId+1;
+
+    }
 
     if(nextSongId>this.state.songList.length){
       nextSongId=1;
@@ -183,8 +199,8 @@ nextSong=()=>{
       this.setState({currentSongId:nextSongId})
     }
     
-    console.log("THIS IS nextSongId:---------"+nextSongId);
-    this.state.songList.map(item =>{
+    //console.log("THIS IS nextSongId:---------"+nextSongId);
+    this.state.songList.forEach(item =>{
       if(item.songId === nextSongId){
         this.setState({song: require("" + item.songPath)});
        this.audio.src= require(""+item.songPath);
@@ -215,11 +231,11 @@ prevSong=()=>{
       return obj.songId
    }) 
 
-   console.log("these are the IDS---------"+shuffledIds);
+   //console.log("these are the IDS---------"+shuffledIds);
    if(this.state.count === 0){
-     console.log("this is in the count<0");
+     //console.log("this is in the count<0");
      let num = this.state.songList.length-1;
-     console.log("this is the list for num-----------------------: "+num);
+     //console.log("this is the list for num-----------------------: "+num);
      this.setState({count: num});
    }else{
     this.setState({count: this.state.count-1})
@@ -229,9 +245,9 @@ prevSong=()=>{
     prevSongId = this.state.currentSongId;
    }else{
     prevSongId = shuffledIds[this.state.count];
-    console.log("this is current count: "+this.state.count);
+    //console.log("this is current count: "+this.state.count);
    }
-   console.log("THIS IS nextSongId line 141: "+prevSongId);
+   //console.log("THIS IS nextSongId line 141: "+prevSongId);
 
    
    if(prevSongId<1){
@@ -242,8 +258,8 @@ prevSong=()=>{
      this.setState({currentSongId:prevSongId})
    }
    
-   console.log("THIS IS nextSongId:---------"+prevSongId);
-   this.state.songList.map(item =>{
+   //console.log("THIS IS nextSongId:---------"+prevSongId);
+   this.state.songList.forEach(item =>{
      if(item.songId === prevSongId){
        this.setState({song: require("" + item.songPath)});
       this.audio.src= require(""+item.songPath);
@@ -263,8 +279,8 @@ prevSong=()=>{
   }else{
     this.setState({currentSongId:prevSongId})
   }
-  console.log("THIS IS prevSongId:---------"+prevSongId);
-  this.state.songList.map(item =>{
+  //console.log("THIS IS prevSongId:---------"+prevSongId);
+  this.state.songList.forEach(item =>{
   if(item.songId === prevSongId){
       this.setState({song: require("" + item.songPath)});
       this.audio.src= require(""+item.songPath);
@@ -283,14 +299,14 @@ prevSong=()=>{
 playFromAlbum=(songList,path)=>{
   this.setState({songList:songList});
   let currentSongId=0;
-  let lastSongId = songList.length;
-  songList.map((item) => {
+  //let lastSongId = songList.length;
+  songList.forEach((item) => {
     if(item.songPath===path){
       currentSongId=item.songId
     }
     
   })
-console.log("this is from app: "+this.state.songList+"current song id is "+currentSongId+" last song id is: "+lastSongId );
+//console.log("this is from app: "+this.state.songList+"current song id is "+currentSongId+" last song id is: "+lastSongId );
   this.setState({currentSongId:currentSongId})
    this.setState({song: require("" + path)});
    this.audio.src= require(""+path);
@@ -317,6 +333,10 @@ console.log("this is from app: "+this.state.songList+"current song id is "+curre
   
 }
 
+setPlayList=(list)=>{
+  this.setState({songList: list});
+}
+
 
 render(){
 
@@ -326,9 +346,9 @@ render(){
      <Router>
       
       <Sidebar/>
-    <Player setVol={this.setVol} setTime={this.setTime} audio={this.audio} play={this.playSong} songInfo={this.state} nextSong={this.nextSong} prevSong={this.prevSong} repeatSong={this.repeatSong} shuffleSong={this.shuffleSong}/>  
+    <Player setVol={this.setVol} setTime={this.setTime} audio={this.audio} play={this.playSong} songInfo={this.state} nextSong={this.nextSong} prevSong={this.prevSong} repeatSong={this.repeatSong} shuffleSong={this.shuffleSong} albumName={this.state.albumName} albumPhoto={this.state.albumPhoto} albumSinger={this.state.albumSinger}/>  
     <Route path="/main" component={MainDisplay}></Route>
-     <Route path="/albumSongs/:id" render={({ location, history }) => <AlbumSongs location={location.pathname} playFromAlbum={this.playFromAlbum} />} />
+     <Route path="/albumSongs/:id" render={({ location, history }) => <AlbumSongs setAlbumDetails={this.setAlbumDetails} setPlayList={this.setPlayList} location={location.pathname} playFromAlbum={this.playFromAlbum} />} />
      
       
      <Route path="/login" component={Login}/>

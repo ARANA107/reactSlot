@@ -43,7 +43,7 @@ export const AlbumsList = [
                     songId:6,
                     songName: "this is 6th song",
                     songDuration: 6969,
-                    songPath: './shared/songs/bensound-clearday.mp3'
+                    songPath: './shared/songs/bensound-ukulele.mp3'
 
                 }
 

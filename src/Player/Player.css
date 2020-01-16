@@ -94,7 +94,7 @@
 
 #nowPlayingLeft .albumArtwork {
 
-    max-width: 117px;
+    max-width: 60px;
     margin-right: 15px;
     float: left;
     background-size: cover;
