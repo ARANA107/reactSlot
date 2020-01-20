@@ -4,10 +4,16 @@ import './regLog.css';
 
 
 class Login extends Component{
-
-    handleChange(event){
-    console.log(event);
+    constructor(props){
+        super(props);
     }
+
+    handleSubmit=(event)=>{
+    event.preventDefault();
+    console.log(this.props);
+    const { history } = this.props;
+    history.push('/main')
+}
     render(){
         return(
                 <div className="inputContainer">

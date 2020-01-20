@@ -1,5 +1,6 @@
 import React from 'react';
 import './SideBar.css';
+import {Link} from 'react-router-dom';
 
 function SideBar() {
   return (
@@ -11,23 +12,15 @@ function SideBar() {
 
         <div className="group">
           <div className="navItem">
-            <a href="/" className="navItemLink">Search
+            <div className="navItemLink"> <Link to={`/Search`}>Search</Link>
               <img src={require("../icons/search.png")} className="icon" alt="Search"/>
-            </a>
+            </div>
           </div>
         </div>
         
         <div className="group">
           <div className="navItem">
-            <a href="/" className="navItemLink">Browse</a>
-          </div>
-
-          <div className="navItem">
-            <a href="yourMusic.php" className="navItemLink">Your Music</a>
-          </div>
-
-          <div className="navItem">
-            <a href="profile.php" className="navItemLink">Ash Rana</a>
+            <div href="profile.php" className="navItemLink"><Link to={`/user`}>Ash Rana</Link></div>
           </div>
           </div>
       </nav>

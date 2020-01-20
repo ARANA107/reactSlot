@@ -25,7 +25,7 @@ class MainDisplay extends Component{
  render(){
   let image = this.state.AlbumsList.map((alb)=>{
     return (
-      <Link key={alb.id} to={`/albumSongs/${alb.id}`}>
+      <Link key={alb.id} to={`albumSongs/${alb.id}`}>
       <Card className="card">
         <CardImg  onClick={() => this.sendInfo(alb)} src={alb.albumPhoto} alt="Card image cap"/>
         <CardText>{alb.albumName}</CardText>

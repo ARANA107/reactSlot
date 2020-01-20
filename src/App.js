@@ -7,10 +7,8 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 import Login from './loginReg/login';
  import Register from './loginReg/register';
 import AlbumSongs from './albumSongs/albumSongs';
-import { Provider } from 'react-redux';
-import { ConfigureStore } from './redux/configureStore';
-
-const store = ConfigureStore();
+import Search from './Search/Search'
+import User from './User/User'
 
 class App extends Component {
   
@@ -31,10 +29,17 @@ constructor(props){
     albumName:null,
     albumPhoto:null,
     albumSinger:null,
+    display:true,
     song:require('./shared/songs/bensound-anewbeginning.mp3'),
 };
 }
 componentDidMount() {
+
+  this.props.history.listen((location, action) => {
+    if(location.pathname === '/main'){
+      this.setState({display:true})
+    }
+  });
   this.audio= new Audio(this.state.song);
   //console.log("this is app "+this.audio.volume);
   this.setState({volume:this.audio.volume})
@@ -337,29 +342,28 @@ setPlayList=(list)=>{
   this.setState({songList: list});
 }
 
+setDisplayOff=(value)=>{
+  this.setState({display: value})
+}
+
 
 render(){
 
 
-  return (                  
-    <Provider store={store}>
+  return (       
+    <React.Fragment>         
      <Router>
       
       <Sidebar/>
-    <Player setVol={this.setVol} setTime={this.setTime} audio={this.audio} play={this.playSong} songInfo={this.state} nextSong={this.nextSong} prevSong={this.prevSong} repeatSong={this.repeatSong} shuffleSong={this.shuffleSong} albumName={this.state.albumName} albumPhoto={this.state.albumPhoto} albumSinger={this.state.albumSinger}/>  
-    <Route path="/main" component={MainDisplay}></Route>
-     <Route path="/albumSongs/:id" render={({ location, history }) => <AlbumSongs setAlbumDetails={this.setAlbumDetails} setPlayList={this.setPlayList} location={location.pathname} playFromAlbum={this.playFromAlbum} />} />
-     
-      
-     <Route path="/login" component={Login}/>
-     <Route path="/register" component={Register}/>
-     
-     {/* <Route path="/login" component={Login}/>
-     <Route path="/register" component={Register}/> */}
-    </Router>
-   
-    </Provider>
+      <Player setVol={this.setVol} setTime={this.setTime} audio={this.audio} play={this.playSong} songInfo={this.state} nextSong={this.nextSong} prevSong={this.prevSong} repeatSong={this.repeatSong} shuffleSong={this.shuffleSong} albumName={this.state.albumName} albumPhoto={this.state.albumPhoto} albumSinger={this.state.albumSinger}/>  
   
+      <Route path="/albumSongs/:id" render={({ location, history }) => <AlbumSongs setAlbumDetails={this.setAlbumDetails} setPlayList={this.setPlayList} location={location.pathname} playFromAlbum={this.playFromAlbum} setDisplayOff={this.setDisplayOff}/>} />
+      {this.state.display ? <MainDisplay/> : null}
+      <Route path="/search" render={()=><Search setDisplayOff={this.setDisplayOff}/>}/>
+    </Router>
+    
+
+    </React.Fragment>  
   );
 }
   

@@ -18,6 +18,7 @@ class AlbumSongs extends Component{
     }
     
     componentDidMount () {
+        this.props.setDisplayOff();
         const number=  Number(this.props.location[this.props.location.length-1]);
         const alb = this.state.AlbumsList.filter( album => album.id===number);
         this.setState({albumName:alb[0].albumName, albumPhoto:alb[0].albumPhoto, albumSinger:alb[0].albumSinger}, ()=>{
