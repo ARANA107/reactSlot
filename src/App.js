@@ -4,12 +4,9 @@ import Sidebar from './sideBar/SideBar';
 import MainDisplay from './MainDisplay/MainDisplay'
 import Player from './Player/Player'
 import {BrowserRouter as Router, Route} from 'react-router-dom';
-import Login from './loginReg/login';
- import Register from './loginReg/register';
 import AlbumSongs from './albumSongs/albumSongs';
 import Search from './Search/Search'
 import User from './User/User'
-
 class App extends Component {
   
 constructor(props){
@@ -360,6 +357,8 @@ render(){
       <Route path="/albumSongs/:id" render={({ location, history }) => <AlbumSongs setAlbumDetails={this.setAlbumDetails} setPlayList={this.setPlayList} location={location.pathname} playFromAlbum={this.playFromAlbum} setDisplayOff={this.setDisplayOff}/>} />
       {this.state.display ? <MainDisplay/> : null}
       <Route path="/search" render={()=><Search setDisplayOff={this.setDisplayOff}/>}/>
+      <Route  path="/user" render={()=><User setDisplayOff={this.setDisplayOff}/>}/>
+
     </Router>
     
 

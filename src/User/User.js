@@ -1,33 +1,23 @@
 import React,{Component} from 'react';
 import { Button} from 'reactstrap';
 import './user.css';
+import {Link} from 'react-router-dom';
 
 
 class User extends Component{
   constructor(props){
     super(props);
-    
-     
   }
-
-
   componentDidMount(){
-    // this.props.setDisplayOff();
+    this.props.setDisplayOff(false);
 }
-
-logout(event){
-    event.preventDefault();
-    const { history } = this.props;
-    history.push('/')
-}
-  
  render(){
   return (
 
     <div className="searchContainer">
-
-   <Button onClick={this.logout.bind(this)}>LOGOUT!</Button>
-
+        <Button>
+<Link to={`/`}>Log Out</Link>
+</Button>
     </div>
 
   );

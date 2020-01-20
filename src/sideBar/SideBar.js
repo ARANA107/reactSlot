@@ -6,9 +6,9 @@ function SideBar() {
   return (
     <div className="sideMain">
       <nav className="navBar">
-          <a href="index.php" className="logo">
+          <div className="logo">
             <img src={require("../icons/logo.png")} alt="logo"/>
-          </a>
+          </div>
 
         <div className="group">
           <div className="navItem">
@@ -20,9 +20,10 @@ function SideBar() {
         
         <div className="group">
           <div className="navItem">
-            <div href="profile.php" className="navItemLink"><Link to={`/user`}>Ash Rana</Link></div>
+            <div className="navItemLink"> <Link to={`/user`}>Log Out</Link>
+            </div>
           </div>
-          </div>
+        </div>
       </nav>
     </div>
   

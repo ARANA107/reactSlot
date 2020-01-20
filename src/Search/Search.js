@@ -1,7 +1,4 @@
 import React,{Component} from 'react';
-import { Card, CardImg, CardText } from 'reactstrap';
-import {AlbumsList} from '../shared/AlbumsList';
-import {Link} from 'react-router-dom';
 import './Search.css';
 import {songs} from '../shared/SongList'
 
